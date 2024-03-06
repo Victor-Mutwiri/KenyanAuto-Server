@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "makes",
+  "info": {
+    "singularName": "make",
+    "pluralName": "makes",
+    "displayName": "Make"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Make": {
+      "type": "string",
+      "required": true
+    },
+    "models": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::model.model",
+      "mappedBy": "make"
+    }
+  }
+}

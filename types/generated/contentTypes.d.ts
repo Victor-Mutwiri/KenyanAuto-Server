@@ -362,6 +362,64 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiMakeMake extends Schema.CollectionType {
+  collectionName: 'makes';
+  info: {
+    singularName: 'make';
+    pluralName: 'makes';
+    displayName: 'Make';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Make: Attribute.String & Attribute.Required;
+    models: Attribute.Relation<
+      'api::make.make',
+      'oneToMany',
+      'api::model.model'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::make.make', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::make.make', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiModelModel extends Schema.CollectionType {
+  collectionName: 'models';
+  info: {
+    singularName: 'model';
+    pluralName: 'models';
+    displayName: 'Model';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    make: Attribute.Relation<'api::model.model', 'manyToOne', 'api::make.make'>;
+    Model: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::model.model',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::model.model',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -793,6 +851,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::make.make': ApiMakeMake;
+      'api::model.model': ApiModelModel;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
