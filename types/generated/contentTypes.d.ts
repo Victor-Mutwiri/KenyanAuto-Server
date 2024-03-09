@@ -362,64 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiMakeMake extends Schema.CollectionType {
-  collectionName: 'makes';
-  info: {
-    singularName: 'make';
-    pluralName: 'makes';
-    displayName: 'Make';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Make: Attribute.String & Attribute.Required;
-    models: Attribute.Relation<
-      'api::make.make',
-      'oneToMany',
-      'api::model.model'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::make.make', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::make.make', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiModelModel extends Schema.CollectionType {
-  collectionName: 'models';
-  info: {
-    singularName: 'model';
-    pluralName: 'models';
-    displayName: 'Model';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    make: Attribute.Relation<'api::model.model', 'manyToOne', 'api::make.make'>;
-    Model: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::model.model',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::model.model',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -841,6 +783,118 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiMakeMake extends Schema.CollectionType {
+  collectionName: 'makes';
+  info: {
+    singularName: 'make';
+    pluralName: 'makes';
+    displayName: 'Make';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Make: Attribute.String & Attribute.Required;
+    models: Attribute.Relation<
+      'api::make.make',
+      'oneToMany',
+      'api::model.model'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::make.make', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::make.make', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiModelModel extends Schema.CollectionType {
+  collectionName: 'models';
+  info: {
+    singularName: 'model';
+    pluralName: 'models';
+    displayName: 'Model';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    make: Attribute.Relation<'api::model.model', 'manyToOne', 'api::make.make'>;
+    Model: Attribute.String;
+    review: Attribute.Relation<
+      'api::model.model',
+      'oneToOne',
+      'api::review.review'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::model.model',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::model.model',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReviewReview extends Schema.CollectionType {
+  collectionName: 'reviews';
+  info: {
+    singularName: 'review';
+    pluralName: 'reviews';
+    displayName: 'Review';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Vehicle: Attribute.String;
+    Overview: Attribute.Text;
+    ExteriorShot: Attribute.Media;
+    Interior: Attribute.Text;
+    Performance: Attribute.String;
+    Safety: Attribute.Text;
+    Reliability: Attribute.Text;
+    Technology: Attribute.String;
+    Ownership: Attribute.Text;
+    Value: Attribute.Text;
+    Comparison: Attribute.Text;
+    Recommendation: Attribute.Text;
+    InteriorShot: Attribute.Media;
+    TechShot: Attribute.Media;
+    model: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'api::model.model'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::review.review',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -851,8 +905,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::make.make': ApiMakeMake;
-      'api::model.model': ApiModelModel;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -861,6 +913,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::make.make': ApiMakeMake;
+      'api::model.model': ApiModelModel;
+      'api::review.review': ApiReviewReview;
     }
   }
 }
