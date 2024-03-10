@@ -862,7 +862,7 @@ export interface ApiReviewReview extends Schema.CollectionType {
     Overview: Attribute.Text;
     ExteriorShot: Attribute.Media;
     Interior: Attribute.Text;
-    Performance: Attribute.String;
+    Performance: Attribute.Text;
     Safety: Attribute.Text;
     Reliability: Attribute.Text;
     Technology: Attribute.String;
@@ -877,6 +877,7 @@ export interface ApiReviewReview extends Schema.CollectionType {
       'oneToOne',
       'api::model.model'
     >;
+    Generation: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

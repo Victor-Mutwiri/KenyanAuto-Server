@@ -33,7 +33,7 @@
       "type": "text"
     },
     "Performance": {
-      "type": "string"
+      "type": "text"
     },
     "Safety": {
       "type": "text"
@@ -83,6 +83,9 @@
       "relation": "oneToOne",
       "target": "api::model.model",
       "inversedBy": "review"
+    },
+    "Generation": {
+      "type": "string"
     }
   }
 }
