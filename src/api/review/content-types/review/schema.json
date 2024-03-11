@@ -80,9 +80,9 @@
     },
     "model": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::model.model",
-      "inversedBy": "review"
+      "inversedBy": "reviews"
     },
     "Generation": {
       "type": "string"

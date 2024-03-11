@@ -823,9 +823,9 @@ export interface ApiModelModel extends Schema.CollectionType {
   attributes: {
     make: Attribute.Relation<'api::model.model', 'manyToOne', 'api::make.make'>;
     Model: Attribute.String;
-    review: Attribute.Relation<
+    reviews: Attribute.Relation<
       'api::model.model',
-      'oneToOne',
+      'oneToMany',
       'api::review.review'
     >;
     createdAt: Attribute.DateTime;
@@ -874,7 +874,7 @@ export interface ApiReviewReview extends Schema.CollectionType {
     TechShot: Attribute.Media;
     model: Attribute.Relation<
       'api::review.review',
-      'oneToOne',
+      'manyToOne',
       'api::model.model'
     >;
     Generation: Attribute.String;
