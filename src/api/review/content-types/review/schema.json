@@ -86,6 +86,9 @@
     },
     "Generation": {
       "type": "string"
+    },
+    "Issues": {
+      "type": "richtext"
     }
   }
 }

@@ -878,6 +878,7 @@ export interface ApiReviewReview extends Schema.CollectionType {
       'api::model.model'
     >;
     Generation: Attribute.String;
+    Issues: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
