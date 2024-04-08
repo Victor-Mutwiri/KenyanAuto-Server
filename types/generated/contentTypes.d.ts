@@ -860,7 +860,6 @@ export interface ApiReviewReview extends Schema.CollectionType {
   attributes: {
     Vehicle: Attribute.String;
     Overview: Attribute.Text;
-    ExteriorShot: Attribute.Media;
     Interior: Attribute.Text;
     Performance: Attribute.Text;
     Safety: Attribute.Text;
@@ -870,15 +869,12 @@ export interface ApiReviewReview extends Schema.CollectionType {
     Value: Attribute.Text;
     Comparison: Attribute.Text;
     Recommendation: Attribute.Text;
-    InteriorShot: Attribute.Media;
-    TechShot: Attribute.Media;
     model: Attribute.Relation<
       'api::review.review',
       'manyToOne',
       'api::model.model'
     >;
     Generation: Attribute.String;
-    Issues: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

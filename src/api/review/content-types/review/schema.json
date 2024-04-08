@@ -18,17 +18,6 @@
     "Overview": {
       "type": "text"
     },
-    "ExteriorShot": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "Interior": {
       "type": "text"
     },
@@ -56,28 +45,6 @@
     "Recommendation": {
       "type": "text"
     },
-    "InteriorShot": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "TechShot": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "model": {
       "type": "relation",
       "relation": "manyToOne",
@@ -86,9 +53,6 @@
     },
     "Generation": {
       "type": "string"
-    },
-    "Issues": {
-      "type": "richtext"
     }
   }
 }
