@@ -893,6 +893,36 @@ export interface ApiReviewReview extends Schema.CollectionType {
   };
 }
 
+export interface ApiSellerSeller extends Schema.CollectionType {
+  collectionName: 'sellers';
+  info: {
+    singularName: 'seller';
+    pluralName: 'sellers';
+    displayName: 'Seller';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Dealers: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::seller.seller',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::seller.seller',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -914,6 +944,7 @@ declare module '@strapi/types' {
       'api::make.make': ApiMakeMake;
       'api::model.model': ApiModelModel;
       'api::review.review': ApiReviewReview;
+      'api::seller.seller': ApiSellerSeller;
     }
   }
 }
