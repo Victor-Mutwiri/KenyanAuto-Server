@@ -783,6 +783,189 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiConditionCondition extends Schema.CollectionType {
+  collectionName: 'conditions';
+  info: {
+    singularName: 'condition';
+    pluralName: 'conditions';
+    displayName: 'Condition';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Condition: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::condition.condition',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::condition.condition',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFuelFuel extends Schema.CollectionType {
+  collectionName: 'fuels';
+  info: {
+    singularName: 'fuel';
+    pluralName: 'fuels';
+    displayName: 'Fuel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    FuelType: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::fuel.fuel', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::fuel.fuel', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGearboxGearbox extends Schema.CollectionType {
+  collectionName: 'gearboxes';
+  info: {
+    singularName: 'gearbox';
+    pluralName: 'gearboxes';
+    displayName: 'Gearbox';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Transmission: Attribute.String;
+    listings: Attribute.Relation<
+      'api::gearbox.gearbox',
+      'oneToMany',
+      'api::listing.listing'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gearbox.gearbox',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gearbox.gearbox',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiListingListing extends Schema.CollectionType {
+  collectionName: 'listings';
+  info: {
+    singularName: 'listing';
+    pluralName: 'listings';
+    displayName: 'Listing';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Gallery: Attribute.Media;
+    model: Attribute.Relation<
+      'api::listing.listing',
+      'manyToOne',
+      'api::model.model'
+    >;
+    Year: Attribute.String;
+    fuel: Attribute.Relation<
+      'api::listing.listing',
+      'oneToOne',
+      'api::fuel.fuel'
+    >;
+    gearbox: Attribute.Relation<
+      'api::listing.listing',
+      'manyToOne',
+      'api::gearbox.gearbox'
+    >;
+    Milleage: Attribute.String;
+    Price: Attribute.String;
+    seller: Attribute.Relation<
+      'api::listing.listing',
+      'manyToOne',
+      'api::seller.seller'
+    >;
+    Contact: Attribute.String;
+    Description: Attribute.Text;
+    condition: Attribute.Relation<
+      'api::listing.listing',
+      'oneToOne',
+      'api::condition.condition'
+    >;
+    location: Attribute.Relation<
+      'api::listing.listing',
+      'oneToOne',
+      'api::location.location'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::listing.listing',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::listing.listing',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLocationLocation extends Schema.CollectionType {
+  collectionName: 'locations';
+  info: {
+    singularName: 'location';
+    pluralName: 'locations';
+    displayName: 'Location';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Location: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMakeMake extends Schema.CollectionType {
   collectionName: 'makes';
   info: {
@@ -827,6 +1010,11 @@ export interface ApiModelModel extends Schema.CollectionType {
       'api::model.model',
       'oneToMany',
       'api::review.review'
+    >;
+    listings: Attribute.Relation<
+      'api::model.model',
+      'oneToMany',
+      'api::listing.listing'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -905,6 +1093,11 @@ export interface ApiSellerSeller extends Schema.CollectionType {
   };
   attributes: {
     Dealers: Attribute.String;
+    listings: Attribute.Relation<
+      'api::seller.seller',
+      'oneToMany',
+      'api::listing.listing'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -941,6 +1134,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::condition.condition': ApiConditionCondition;
+      'api::fuel.fuel': ApiFuelFuel;
+      'api::gearbox.gearbox': ApiGearboxGearbox;
+      'api::listing.listing': ApiListingListing;
+      'api::location.location': ApiLocationLocation;
       'api::make.make': ApiMakeMake;
       'api::model.model': ApiModelModel;
       'api::review.review': ApiReviewReview;

@@ -25,6 +25,12 @@
       "relation": "oneToMany",
       "target": "api::review.review",
       "mappedBy": "model"
+    },
+    "listings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::listing.listing",
+      "mappedBy": "model"
     }
   }
 }

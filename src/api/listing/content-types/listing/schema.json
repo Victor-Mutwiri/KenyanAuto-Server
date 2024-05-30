@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "collectionName": "listings",
+  "info": {
+    "singularName": "listing",
+    "pluralName": "listings",
+    "displayName": "Listing",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "model": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::model.model",
+      "inversedBy": "listings"
+    },
+    "Year": {
+      "type": "string"
+    },
+    "fuel": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::fuel.fuel"
+    },
+    "gearbox": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::gearbox.gearbox",
+      "inversedBy": "listings"
+    },
+    "Milleage": {
+      "type": "string"
+    },
+    "Price": {
+      "type": "string"
+    },
+    "seller": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::seller.seller",
+      "inversedBy": "listings"
+    },
+    "Contact": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "condition": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::condition.condition"
+    },
+    "location": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location.location"
+    }
+  }
+}
