@@ -900,7 +900,6 @@ export interface ApiListingListing extends Schema.CollectionType {
       'api::gearbox.gearbox'
     >;
     Milleage: Attribute.String;
-    Price: Attribute.String;
     seller: Attribute.Relation<
       'api::listing.listing',
       'manyToOne',
@@ -918,6 +917,7 @@ export interface ApiListingListing extends Schema.CollectionType {
       'oneToOne',
       'api::location.location'
     >;
+    Price: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

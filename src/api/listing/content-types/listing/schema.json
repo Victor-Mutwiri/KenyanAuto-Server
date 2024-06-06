@@ -44,9 +44,6 @@
     "Milleage": {
       "type": "string"
     },
-    "Price": {
-      "type": "string"
-    },
     "seller": {
       "type": "relation",
       "relation": "manyToOne",
@@ -68,6 +65,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::location.location"
+    },
+    "Price": {
+      "type": "biginteger"
     }
   }
 }
