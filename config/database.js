@@ -9,7 +9,7 @@ module.exports = ({ env }) => {
       client:'postgres',
       connetion:{
         host:env('DATABASE_HOST', 'aws-0-us-east-1.pooler.supabase.com'),
-        port:env('DATABASE_HOST', 6543),
+        port:env('DATABASE_PORT', 6543),
         database:env('DATABASE_NAME', 'postgres'),
         user: env('DATABASE_USERNAME', 'postgres'),
         password: env('DATABASE_PASSWORD', 'KenyanAuto2024'),
@@ -59,7 +59,7 @@ module.exports = ({ env }) => {
       },
       pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
     },
-    postgres: {
+    /* postgres: {
       connection: {
         connectionString: env('DATABASE_URL'),
         host: env('DATABASE_HOST', 'localhost'),
@@ -81,7 +81,7 @@ module.exports = ({ env }) => {
         schema: env('DATABASE_SCHEMA', 'public'),
       },
       pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
-    },
+    }, */
     sqlite: {
       connection: {
         filename: path.join(
