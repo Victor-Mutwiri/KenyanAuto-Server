@@ -1,9 +1,21 @@
 const path = require('path');
+const { host, database } = require('pg/lib/defaults');
 
 module.exports = ({ env }) => {
   const client = env('DATABASE_CLIENT', 'sqlite');
 
   const connections = {
+    connection:{
+      client:'postgres',
+      connetion:{
+        host:env('DATABASE_HOST', 'aws-0-us-east-1.pooler.supabase.com'),
+        port:env('DATABASE_HOST', 6543),
+        database:env('DATABASE_NAME', 'postgres'),
+        user: env('DATABASE_USERNAME', 'postgres'),
+        password: env('DATABASE_PASSWORD', 'KenyanAuto2024'),
+        ssl: env.bool('DATABASE_SSL', false)
+      }
+    },
     mysql: {
       connection: {
         connectionString: env('DATABASE_URL'),

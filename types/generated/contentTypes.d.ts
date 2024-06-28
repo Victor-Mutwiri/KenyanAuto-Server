@@ -918,7 +918,7 @@ export interface ApiListingListing extends Schema.CollectionType {
       'api::location.location'
     >;
     Price: Attribute.BigInteger;
-    Name: Attribute.String;
+    Name: Attribute.String & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
